@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "fiap_fcg_elastic_func": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7267",
+      "launchBrowser": false
+    }
+  }
+}
