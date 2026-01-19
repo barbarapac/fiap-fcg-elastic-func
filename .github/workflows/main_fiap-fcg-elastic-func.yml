@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy dotnet core project to Azure Function App - fiap-fcg-elastic-func
+name: Build and deploy dotnet core app to Azure Function App - fiap-fcg-elastic-func
 
 on:
   push:
@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
@@ -30,7 +30,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: 'Resolve Project Dependencies Using Dotnet'
-        shell: bash
+        shell: pwsh
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           dotnet build --configuration Release --output ./output
@@ -39,9 +39,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5EED87C1ED904A7A876DFDF2D29608ED }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_78C132F3C515463CAFAB5A461D17365F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7CD9AB8C5CDE487B8E99B30FE669E580 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C4DAF5ADEB944CE1B6A21C2B70386518 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_03D954C673994EF8B4FEA8EF44F19EBB }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1108F88013964A2AAA81D77054D1F3E1 }}
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
